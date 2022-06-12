@@ -22,12 +22,19 @@ def cats_index(request):
 # Define cats detail view
 def cats_detail(request, cat_id):
   cat = Cat.objects.get(id=cat_id)
+  # Get the toys the cat doesn't have...
+  # First, create a list of the toy ids that the cat DOES have
+  toy_ids_list = cat.toys.all().values_list('id')
+  # Now we can query for toys whose ids are not in the list using exclude
+  unassigned_toys = Toy.objects.exclude(id__in=toy_ids_list)
+  print(unassigned_toys)
   # instantiate FeedingForm to be rendered 
   # within the detail.html template
   feeding_form = FeedingForm()
   return render(request, 'cats/detail.html', {
     'cat': cat,
-    'feeding_form': feeding_form
+    'feeding_form': feeding_form,
+    'toys': unassigned_toys
   })
 
 # Define the add feeding for a cat functionality
@@ -46,7 +53,7 @@ def add_feeding(request, cat_id):
 # Class-Based View (CBV) to create a cat
 class CatCreate(CreateView):
   model = Cat
-  fields = '__all__'
+  fields = ['name', 'breed', 'description', 'age']
 
 # Class-Based View to update a cat 
 class CatUpdate(UpdateView):

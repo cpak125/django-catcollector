@@ -21,6 +21,7 @@ class Toy(models.Model):
   def get_absolute_url(self):
     return reverse('toys_detail', kwargs={'pk': self.id})
 
+
 class Cat(models.Model):
   #define the fields/columns
   name = models.CharField(max_length=100)
@@ -28,7 +29,10 @@ class Cat(models.Model):
   description = models.TextField(max_length=250)
   age = models.IntegerField()
   # there will be a 'feeding_set' related-manager
-  #  used to access a cat's feedings
+  # used to access a cat's feedings
+  # 
+  # Add the M:M relationship
+  toys = models.ManyToManyField(Toy)
 
   def __str__(self):
     return f'{self.name} ({self.id})'
