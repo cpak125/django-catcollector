@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Cat
+from django.views.generic import ListView, DetailView
+from .models import Cat, Toy
 from .forms import FeedingForm
 
 # Create your views here.
@@ -57,3 +58,27 @@ class CatUpdate(UpdateView):
 class CatDelete(DeleteView):
   model = Cat
   success_url = '/cats/'
+
+
+# Class-Based View to list all toys
+class ToyList(ListView):
+  model = Toy
+
+# Class-Based View to get details of a toy
+class ToyDetail(DetailView):
+  model = Toy
+
+# Class-Based View to create a toy
+class ToyCreate(CreateView):
+  model = Toy
+  fields = '__all__'
+
+# Class-Based View to update a toy
+class ToyUpdate(UpdateView):
+  model = Toy
+  fields = '__all__'
+
+# Class-Based View to delete a toy
+class ToyDelete(DeleteView):
+  model = Toy
+  success_url = '/toys/'
