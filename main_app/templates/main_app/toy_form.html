@@ -2,7 +2,7 @@
 
 {% block content %}
   {% if object %}
-    <h1>Edit <span class="teal-text">{{object.name}}</span></h1>
+    <h1 class="center">Edit <span class="teal-text">{{object.name}}</span></h1>
   {% else %}
     <h1>Add Toy</h1>
   {% endif %}
@@ -10,10 +10,10 @@
   <form action="" method="POST">
     <!-- Django requires the following for security purposes -->
     {% csrf_token %}
-    <table>
+    <!-- <table>
       <!-- Render the inputs inside of <tr>s & <td>s -->
-      {{ form.as_table }}
-    </table>
+    {{ form.as_p }}
+    <!-- </table> --> 
     <input type="submit" value="{{ object|yesno:'Update Toy, Add Toy' }}" class="btn">
   </form>
 {% endblock %}
