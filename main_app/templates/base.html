@@ -26,8 +26,10 @@
             <li><a href="{% url 'toys_index' %}">View All Toys</a></li>
             <li><a href="{% url 'cats_create' %}">Add a Cat</a></li>
             <li><a href="{% url 'index' %}">View All My Cats</a></li>
+            <li>Welcome, {{ user }}</li>
             <li><a href="{% url 'logout' %}">Log Out</a></li>
           {% else %}  
+            <li><a href="{% url 'signup' %}">Sign Up</a></li>
             <li><a href="{% url 'login' %}">Log In</a></li>
           {% endif %}  
         </ul>
