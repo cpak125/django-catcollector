@@ -123,7 +123,7 @@ STATIC_URL = 'static/'
 
 # Add this variable to specify where successful logins should redirect to
 LOGIN_REDIRECT_URL = '/cats/'
-
+ 
 # Add this variable to specify where logging out redirects to
 LOGOUT_REDIRECT_URL = '/accounts/login/'
 
@@ -131,3 +131,7 @@ LOGOUT_REDIRECT_URL = '/accounts/login/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Configure Django App for Heroku
+import django_on_heroku
+django_on_heroku.settings(locals())
